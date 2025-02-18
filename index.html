@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Meu Amor ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+    
+        body {
+            background: linear-gradient(135deg, #1a1a1a, #2d1b3a);
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #fff;
+        }
+    
+        .main-content {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            z-index: 1;
+        }
+    
+        .header {
+            margin: 40px 0;
+        }
+    
+        .header h1 {
+            color: #a64dff;
+            font-size: 3em;
+            margin-bottom: 20px;
+            animation: heartBeat 1.5s infinite;
+            text-shadow: 0 0 10px rgba(166, 77, 255, 0.3);
+        }
+    
+        .header p {
+            color: #e6ccff;
+            font-size: 1.2em;
+            font-style: italic;
+        }
+    
+        .counter {
+            background: rgba(45, 27, 58, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(166, 77, 255, 0.2);
+        }
+    
+        #days-counter {
+            font-size: 4em;
+            font-weight: bold;
+            color: #a64dff;
+            text-shadow: 0 0 10px rgba(166, 77, 255, 0.3);
+        }
+    
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+    
+        .love-button {
+            background: #6b2fbc;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(107, 47, 188, 0.3);
+        }
+    
+        .love-button:hover {
+            transform: scale(1.05);
+            background: #8445d9;
+            box-shadow: 0 4px 20px rgba(166, 77, 255, 0.4);
+        }
+    
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(45, 27, 58, 0.9);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(166, 77, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+    
+        .music-btn:hover {
+            background: #6b2fbc;
+            color: white;
+            border-color: #a64dff;
+        }
+
+       .start-button{
+        position: fixed;
+            bottom: 20px;
+            right: 150px;
+            background: rgba(45, 27, 58, 0.9);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(166, 77, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+       
+        .start-button:hover{
+            background: #6b2fbc;
+            color: white;
+            border-color: #a64dff;
+        }
+    
+        .petal {
+            position: fixed;
+            z-index: 0;
+            width: 15px;
+            height: 15px;
+            background: linear-gradient(45deg, #a64dff, #6b2fbc);
+            border-radius: 150% 0 150% 0;
+            animation: falling linear infinite;
+            opacity: 0.4;
+        }
+    
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+            backdrop-filter: blur(5px);
+        }
+    
+        .surprise-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(45, 27, 58, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(166, 77, 255, 0.3);
+            z-index: 1000;
+            max-width: 90%;
+            width: 500px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(166, 77, 255, 0.3);
+        }
+    
+        .surprise-title {
+            color: #a64dff;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+    
+        .media-container {
+            margin: 20px 0;
+        }
+    
+        .video-surprise {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+    
+        .audio-player {
+            width: 100%;
+            margin: 10px 0;
+            border-radius: 20px;
+            background: rgba(166, 77, 255, 0.1);
+            padding: 15px;
+        }
+    
+        .audio-player audio {
+            width: 100%;
+        }
+    
+        .audio-title {
+            color: #fff;
+            margin: 10px 0;
+            font-style: italic;
+        }
+    
+        .surprise-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px 10px;
+            transition: all 0.3s ease;
+        }
+    
+        .surprise-close:hover {
+            color: #a64dff;
+        }
+        .question {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+            padding: 10px;
+            background: #000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .options button:hover {
+            background: #333;
+        }
+        .feedback {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .container-j {
+    display: none;  /* Esconde a div inicialmente */
+}
+
+.wheel-button {
+            background: #6b2fbc;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(107, 47, 188, 0.3);
+            margin: 20px 0;
+        }
+
+        .wheel-button:hover {
+            transform: scale(1.05);
+            background: #8445d9;
+            box-shadow: 0 4px 20px rgba(166, 77, 255, 0.4);
+        }
+        .wheel-container {
+            display: none;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .wheel {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            position: relative;
+            margin: 20px auto;
+            background: #6b2fbc;
+            transform-origin: center;
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            box-shadow: 0 0 20px rgba(166, 77, 255, 0.3);
+        }
+
+        .challenge-display {
+            background: rgba(45, 27, 58, 0.9);
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 20px;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(166, 77, 255, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .wheel-segment {
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            transform-origin: right center;
+            right: 50%;
+            top: 50%;
+        }
+
+        .wheel-center {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .choice-button{
+            background: #6b2fbc;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(107, 47, 188, 0.3);
+            margin: 20px 0;
+        }
+
+        .choice-button:hover{
+            transform: scale(1.05);
+            background: #8445d9;
+            box-shadow: 0 4px 20px rgba(166, 77, 255, 0.4);
+        }
+
+        .restart-button {
+            background: #a64dff;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .special-message {
+            color: #ff69b4;
+            font-size: 1.3em;
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid #ff69b4;
+            border-radius: 15px;
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px #ff69b4; }
+            50% { box-shadow: 0 0 20px #ff69b4; }
+            100% { box-shadow: 0 0 5px #ff69b4; }
+        }
+        @keyframes falling {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+    
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2em; }
+            .button-container { flex-direction: column; }
+            .love-button { width: 100%; }
+            .surprise-modal { width: 95%; padding: 20px; }
+        }
+
+        .reasons-container {
+            display: none;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .reason-card {
+            background: rgba(45, 27, 58, 0.9);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(166, 77, 255, 0.2);
+            transform-origin: center;
+            animation: appear 0.5s ease-out;
+        }
+
+        .reason-text {
+            color: #fff;
+            font-size: 1.3em;
+            line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .generate-button {
+            background: #6b2fbc;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(107, 47, 188, 0.3);
+        }
+
+        .generate-button:hover {
+            transform: scale(1.05);
+            background: #8445d9;
+            box-shadow: 0 4px 20px rgba(166, 77, 255, 0.4);
+        }
+
+        @keyframes appear {
+            0% {
+                opacity: 0;
+                transform: scale(0.9) translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .heart-icon {
+            color: #ff69b4;
+            font-size: 1.5em;
+            margin: 0 5px;
+            animation: beat 1s infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        #music {
+            display: none; /* Esconde o player de áudio */
+        }
+
+
+@keyframes falling {
+    0% {
+        transform: translateY(-20px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.4;
+    }
+    90% {
+        opacity: 0.4;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+    </style>
+</head>
+<body>
+    <main class="main-content">
+        <header class="header">
+            <h1>❤️ Para Meu Amor ❤️</h1>
+            <p>Porque cada momento longe de ti faz meu coração bater mais forte...</p>
+        </header>
+
+        <section class="counter">
+            <div id="days-counter">0</div>
+            <p>dias de amor e cumplicidade</p>
+        </section>
+
+        <section class="button-container">
+            <button class="generate-button" onclick="showReasons()">❤️Porque eu te amo?</button>
+            <div class="reasons-container" id="reasonsContainer">
+                <div class="reason-card">
+                    <p class="reason-text" id="reasonText"></p>
+                </div>
+                <button class="generate-button" onclick="generateReason()">Ver outro motivo</button>
+            </div>
+        
+            <script>
+                const reasons = [
+                    "Amo o jeito como seus olhos brilham quando você sorri",
+                    "Amo como você me faz sentir especial todos os dias",
+                    "Amo sua risada que ilumina meu mundo",
+                    "Amo como você me entende sem precisar dizer uma palavra",
+                    "Amo o jeito como você cuida de mim",
+                    "Amo cada momento que passamos juntos",
+                    "Amo o seu jeito único de ser",
+                    "Amo quando você fala comigo com carinho",
+                    "Amo como você me faz uma pessoa melhor",
+                    "Amo quando você me abraça e o mundo para",
+                    "Amo como você me faz feliz só de existir",
+                    "Amo o seu coração gentil e carinhoso",
+                    "Amo como você me apoia em tudo",
+                    "Amo cada pequeno detalhe em você",
+                    "Amo nossa cumplicidade única",
+                    "Amo como você me faz rir mesmo nos dias difíceis",
+                    "Amo compartilhar sonhos com você",
+                    "Amo como você torna meus dias mais especiais",
+                    "Amo cada mensagem sua que recebo",
+                    "Amo quando você demonstra seu amor por mim",
+                    "Amo como nossos corações batem no mesmo ritmo",
+                    "Amo o futuro que estamos construindo juntos",
+                    "Amo cada segundo ao seu lado",
+                    "Amo como você me faz sentir amado",
+                    "Amo nossa história de amor única",
+                    "Amo seus beijos que me fazem derreter",
+                    "Amo seu companheirismo em todos os momentos",
+                    "Amo como você me completa perfeitamente",
+                    "Amo cada surpresa que você me faz",
+                    "Amo como você me inspira a ser melhor"
+                ];
+        
+                let lastReason = -1;
+        
+                function showReasons() {
+                    document.querySelector('.generate-button').style.display = 'none';
+                    document.getElementById('reasonsContainer').style.display = 'block';
+                    generateReason();
+                }
+        
+                function generateReason() {
+                    let randomIndex;
+                    do {
+                        randomIndex = Math.floor(Math.random() * reasons.length);
+                    } while (randomIndex === lastReason);
+                    
+                    lastReason = randomIndex;
+                    const reasonText = document.getElementById('reasonText');
+                    
+                    // Adiciona corações animados
+                    const reason = `<span class="heart-icon">❤️</span>${reasons[randomIndex]}<span class="heart-icon">❤️</span>`;
+                    
+                    // Reinicia a animação
+                    const card = document.querySelector('.reason-card');
+                    card.style.animation = 'none';
+                    card.offsetHeight; // Força reflow
+                    card.style.animation = 'appear 0.5s ease-out';
+                    
+                    reasonText.innerHTML = reason;
+                }
+            </script>
+            <button class="love-button" id="surpriseBtn">
+                🎁 Revelar Surpresa
+            </button>
+
+            <button class="wheel-button" onclick="showWheel()">❤️ Roda do Destino do Amor ❤️</button>
+            <div class="wheel-container">
+                <div class="wheel">
+                    <div class="wheel-center"></div>
+                </div>
+                <button class="wheel-button" onclick="spinWheel()">Girar a Roda</button>
+                <div class="challenge-display"></div>
+            </div>
+            <script>
+                const challenges = [
+                    "Me mande um áudio dizendo algo lindo 🎵",
+                    "Conte um momento especial nosso que nunca vou esquecer 💭",
+                    "Diga uma coisa que te faz se apaixonar por mim todos os dias 💝",
+                    "Mande tua foto nossa favorita e diga por que gosta tanto dela 📸",
+                    "Me dê um apelido carinhoso novo 🥰",
+                    "Diga o que mais te encanta em mim 💫",
+                    "Conte um sonho que quer realizar comigo 🌟",
+                    "Descreva nosso primeiro beijo 💋",
+                    "Diga três qualidades minhas que te fazem sorrir 😊",
+                    "Compartilhe uma música que te faz lembrar de mim 🎵",
+                    "Me mande um emoji que representa nosso amor ❤️",
+                    "Conte o momento em que percebeu que estava apaixonada por mim 💘",
+                    "Liga-me e diga o quanto me amas",
+                    "Diz-me uma fantasia que queres realizar comigo",
+                    "Diga-me algo que sempre quisseste dizer e nunca me contaste"
+                ];
+        
+                let isSpinning = false;
+                let lastAngle = 0;
+        
+                function showWheel() {
+                    document.querySelector('.wheel-container').style.display = 'block';
+                    document.querySelector('.wheel-button').style.display = 'none';
+                    
+                    // Criar segmentos da roda
+                    const wheel = document.querySelector('.wheel');
+                    const segmentAngle = 360 / challenges.length;
+                    
+                    challenges.forEach((_, index) => {
+                        const segment = document.createElement('div');
+                        segment.className = 'wheel-segment';
+                        segment.style.transform = `rotate(${segmentAngle * index}deg)`;
+                        wheel.appendChild(segment);
+                    });
+                }
+        
+                function spinWheel() {
+                    if (isSpinning) return;
+                    isSpinning = true;
+        
+                    const wheel = document.querySelector('.wheel');
+                    const display = document.querySelector('.challenge-display');
+                    display.style.display = 'none';
+        
+                    // Calcular rotação aleatória (2-5 voltas completas + ângulo aleatório)
+                    const rotations = 2 + Math.random() * 3;
+                    const angle = Math.floor(Math.random() * 360);
+                    const totalAngle = (rotations * 360) + angle + lastAngle;
+                    lastAngle = totalAngle;
+        
+                    wheel.style.transform = `rotate(${totalAngle}deg)`;
+        
+                    // Selecionar e mostrar desafio
+                    setTimeout(() => {
+                        const challengeIndex = Math.floor(Math.random() * challenges.length);
+                        display.textContent = challenges[challengeIndex];
+                        display.style.display = 'block';
+                        isSpinning = false;
+                    }, 4000);
+                }
+            </script>
+            <button class="choice-button" onclick="startStory()">📖 Nossa História Interativa 💞</button>
+            <div class="story-container" id="storyContainer">
+                <p class="story-text" id="storyText"></p>
+                <div class="choices" id="choices"></div>
+            </div>
+        
+            <script>
+                const story = {
+                    start: {
+                        text: "Amor, lembra do nosso primeiro encontro? Aquele dia especial em que nossos caminhos se cruzaram... Como você acha que eu me senti?",
+                        choices: [
+                            { text: "Você estava nervoso e ansioso", next: "nervous" },
+                            { text: "Você estava confiante e tranquilo", next: "confident" }
+                        ]
+                    },
+                    nervous: {
+                        text: "Exatamente! Meu coração batia tão forte que parecia que ia sair pela boca. E sabe o que mais me deixou nervoso?",
+                        choices: [
+                            { text: "Seu sorriso lindo", next: "smile" },
+                            { text: "O jeito que você me olhava", next: "look" }
+                        ]
+                    },
+                    confident: {
+                        text: "Na verdade, eu estava super nervoso! Mas tentei parecer confiante para te impressionar. E sabe o que me acalmou?",
+                        choices: [
+                            { text: "Nossa conversa fluiu naturalmente", next: "conversation" },
+                            { text: "O ambiente acolhedor", next: "ambiente" }
+                        ]
+                    },
+                    smile: {
+                        text: "Sim! Seu sorriso me encantou desde o primeiro momento. E até hoje, cada vez que você sorri, meu coração se derrete. O que você acha que aconteceu depois?",
+                        choices: [
+                            { text: "Você se apaixonou ainda mais", next: "love" },
+                            { text: "Você quis me conhecer melhor", next: "know" }
+                        ]
+                    },
+                    look: {
+                        text: "Exatamente! Seu olhar me hipnotizou. E até hoje, quando olho nos seus olhos, sinto a mesma magia. Como você acha que eu me sinto agora?",
+                        choices: [
+                            { text: "Mais apaixonado que nunca", next: "moreInLove" },
+                            { text: "Grato por ter você", next: "grateful" }
+                        ]
+                    },
+                    conversation: {
+                        text: "Sim! Era como se já nos conhecêssemos há anos. E hoje, cada conversa nossa é especial. O que você mais gosta nas nossas conversas?",
+                        choices: [
+                            { text: "Nossas risadas juntos", next: "laughs" },
+                            { text: "Nossos momentos profundos", next: "deep" }
+                        ]
+                    },
+                    ambiente: {
+                        text: "O ambiente ajudou, mas foi sua presença que realmente me acalmou. E hoje, onde você mais gosta de estar comigo?",
+                        choices: [
+                            { text: "Em momentos íntimos só nossos", next: "intimate" },
+                            { text: "Em nossas aventuras juntos", next: "adventure" }
+                        ]
+                    },
+                    // Finais especiais
+                    love: {
+                        text: "Você está absolutamente certa! Cada dia que passa, me apaixono mais por você. Cada detalhe, cada momento, cada sorriso... Tudo em você me faz ter certeza de que nosso amor é especial e único.",
+                        choices: [{ text: "Recomeçar nossa história ❤️", next: "start" }],
+                        special: true
+                    },
+                    know: {
+                        text: "E foi a melhor decisão que já tomei! Conhecer você mais profundamente me fez perceber que você é ainda mais incrível do que imaginei. Cada dia descubro mais razões para te amar.",
+                        choices: [{ text: "Recomeçar nossa história ❤️", next: "start" }],
+                        special: true
+                    },
+                    moreInLove: {
+                        text: "Exatamente! Cada dia que passa, meu amor por você cresce mais e mais. É como se meu coração se expandisse para caber todo esse amor que sinto.",
+                        choices: [{ text: "Recomeçar nossa história ❤️", next: "start" }],
+                        special: true
+                    },
+                    grateful: {
+                        text: "Sim, sou infinitamente grato por ter você na minha vida. Você traz cor aos meus dias e alegria ao meu coração. Ter você é a maior bênção que já recebi.",
+                        choices: [{ text: "Recomeçar nossa história ❤️", next: "start" }],
+                        special: true
+                    },
+                    laughs: {
+                        text: "Nossas risadas são a melhor música que existe! Cada momento de alegria compartilhado com você é um tesouro que guardo no coração.",
+                        choices: [{ text: "Recomeçar nossa história ❤️", next: "start" }],
+                        special: true
+                    },
+                    deep: {
+                        text: "Nossos momentos profundos são tão especiais... É incrível como podemos ser completamente nós mesmos um com o outro, compartilhando nossos sonhos, medos e esperanças.",
+                        choices: [{ text: "Recomeçar nossa história ❤️", next: "start" }],
+                        special: true
+                    },
+                    intimate: {
+                        text: "Esses momentos são mágicos... Quando estamos juntos, o mundo lá fora desaparece e só existe nosso amor. Cada abraço, cada beijo, cada olhar é especial.",
+                        choices: [{ text: "Recomeçar nossa história ❤️", next: "start" }],
+                        special: true
+                    },
+                    adventure: {
+                        text: "Nossas aventuras juntos são incríveis! Cada momento ao seu lado é uma nova descoberta, uma nova emoção. Mal posso esperar por todas as aventuras que ainda vamos viver juntos.",
+                        choices: [{ text: "Recomeçar nossa história ❤️", next: "start" }],
+                        special: true
+                    }
+                };
+        
+                let currentScene = 'start';
+        
+                function startStory() {
+                    document.querySelector('.choice-button').style.display = 'none';
+                    document.getElementById('storyContainer').style.display = 'block';
+                    showScene('start');
+                }
+        
+                function showScene(sceneId) {
+                    currentScene = sceneId;
+                    const scene = story[sceneId];
+                    const container = document.getElementById('storyContainer');
+                    const storyText = document.getElementById('storyText');
+                    const choices = document.getElementById('choices');
+        
+                    storyText.textContent = scene.text;
+                    choices.innerHTML = '';
+        
+                    if (scene.special) {
+                        // Adiciona a mensagem especial com animação
+                        const specialMessage = document.createElement('div');
+                        specialMessage.className = 'special-message';
+                        specialMessage.textContent = "Te amo mais a cada dia! ❤️";
+                        storyText.after(specialMessage);
+                    }
+        
+                    scene.choices.forEach(choice => {
+                        const button = document.createElement('button');
+                        button.className = 'choice-button';
+                        button.textContent = choice.text;
+                        button.onclick = () => {
+                            if (scene.special) {
+                                const specialMessage = document.querySelector('.special-message');
+                                if (specialMessage) specialMessage.remove();
+                            }
+                            showScene(choice.next);
+                        };
+                        choices.appendChild(button);
+                    });
+        
+                    // Anima a transição
+                    container.style.animation = 'none';
+                    container.offsetHeight; // Força reflow
+                    container.style.animation = 'fadeIn 0.5s ease-out';
+                }
+            </script>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="overlay"></div>
+    <div class="surprise-modal" id="surpriseModal">
+        <button class="surprise-close" onclick="closeSurprise()">×</button>
+        <h3 class="surprise-title">Uma surpresa especial para ti ✨</h3>
+        <div class="media-container" id="mediaContainer"></div>
+    </div>
+    <!-- Music -->
+    <audio controls id="music">
+        <source src="https://dl.dropboxusercontent.com/scl/fi/ruihi2sc5pyvtyb372yzx/songs.mp3?rlkey=ygewu1y2de6smqwi7s5dse425
+        " type="audio/mp3">
+    </audio>
+    
+    <button onclick="toggleMusic()" class="music-btn" id="musicBtn">🎵Música</button>
+    <script>
+        const audio = document.getElementById("music");
+        const button = document.getElementById("musicBtn");
+
+        button.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play();
+                button.textContent = "⏸️ Pausar Música";
+            } else {
+                audio.pause();
+                button.textContent = "🎵 Música";
+            }
+        });
+    </script>
+
+    <button class="start-button" onclick="startGame()">Tu me conheces?</button>
+
+    <div class="container-j">
+        <h1>O Quanto Me Conheces?</h1>
+        <p class="question">Carregando pergunta...</p>
+        <div class="options"></div>
+        <p class="feedback"></p>
+    </div>
+    
+    <script>
+        const questions = [
+            {
+                question: "Qual é a minha comida favorita?",
+                options: ["Lasanha", "Funge", "Mufete"],
+                answer: "Mufete"
+            },
+            {
+                question: "Aonde foi o nosso primeiro encontro?",
+                options: ["Carro", "Restaurante", "Praxes","Pegões"],
+                answer: "Pegões"
+            },
+            {
+                question: "Qual é a minha coisa favorita em ti?",
+                options: ["Peitos","Olhos", "Boca","TUDO"],
+                answer: "TUDO"
+            },
+            {
+                question: "Qual foi o momento mais engraçado que já passamos juntos?",
+                options: ["No carro","Em casa","Restaurante Japones"],
+                answer: "Restaurante Japones"
+            },
+            {
+                question: "Em que ano nós achamos que é prefeito para nos casarmos?",
+                options: ["2029","2030","2035"],
+                answer: "2030"
+            },
+            {
+                question: "O que fez com que eu me apaixonasse por ti?",
+                options: ["Minha Simpatia","Fiz com que você fique na sua melhor versão","Minhas loucuras"],
+                answer: "Fiz com que você fique na sua melhor versão"
+            },
+            {
+                question: "Qual é o meu maior sonho?",
+                options: ["Ser pai","Ser jogador","Ser Cantor"],
+                answer: "Ser pai"
+            },
+            {
+                question: "Qual é a ordem de filhos que nós entramos em acordo?",
+                options: ["3 meninos","2 meninas e 1 menino","1 menina e 2 meninos"],
+                answer: "1 menina e 2 meninos"
+            },
+            {
+                question: "Qual é o meu maior medo?",
+                options: ["Lesão grave","Filmes de terror","Me perder"],
+                answer: "Me perder"
+            },
+            {
+                question: "Qual animal eu sinto pavor?",
+                options: ["Leão","Urso","Cobra"],
+                answer: "Cobra"
+            },
+            {
+                question: "Qual é o meu maior trauma quando eu era criança?",
+                options: ["Claustrofobia","Nictofobia ","Violência"],
+                answer: "Nictofobia"
+            },
+            {
+                question: "Qual é o meu estilo de música favorito?",
+                options: ["Trap","Funk ","Afro"],
+                answer: "Trap"
+            },
+            {
+                question: "Quantos anos eu morei no Brasil?",
+                options: ["10 anos","8 anos ","5 anos"],
+                answer: "5 anos"
+            },
+            {
+                question: "Qual foi o primeiro bairro em Angola/Luanda onde eu morei?",
+                options: ["Sambizanga","Benfica ","Patriota"],
+                answer: "Sambizanga"
+            },
+            {
+                question: "Qual é o meu time do coração?",
+                options: ["FC Porto","Benfica ","Sporting"],
+                answer: "FC Porto"
+            }
+        ];
+        
+        let currentQuestion = 0;
+        let attempts = 3;
+        
+        function startGame() {
+            document.querySelector(".start-button").style.display = "none";
+            document.querySelector(".container-j").style.display = "block";
+            loadQuestion();
+        }
+        
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                document.querySelector(".container-j").innerHTML = "<h2>Jogo concluído! ❤️</h2>";
+                return;
+            }
+            
+            const q = questions[currentQuestion];
+            document.querySelector(".question").textContent = q.question;
+            const optionsDiv = document.querySelector(".options");
+            optionsDiv.innerHTML = "";
+            
+            q.options.forEach(option => {
+                const btn = document.createElement("button");
+                btn.textContent = option;
+                btn.onclick = () => checkAnswer(option);
+                optionsDiv.appendChild(btn);
+            });
+        }
+        
+        function checkAnswer(selected) {
+            const feedback = document.querySelector(".feedback");
+            const q = questions[currentQuestion];
+            
+            if (selected === q.answer) {
+                feedback.textContent = "✔️ Correto!";
+                feedback.style.color = "#0f0";
+                currentQuestion++;
+                attempts = 3;
+                setTimeout(loadQuestion, 1000);
+            } else {
+                attempts--;
+                feedback.textContent = `❌ Errado! Tentativas restantes: ${attempts}`;
+                feedback.style.color = "#f00";
+                if (attempts === 0) {
+                    currentQuestion++;
+                    attempts = 3;
+                    setTimeout(loadQuestion, 1000);
+                }
+            }
+        }
+    </script>
+
+    <script>
+        // Elementos do DOM
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        const missYouBtn = document.getElementById('missYouBtn');
+        const surpriseBtn = document.getElementById('surpriseBtn');
+        const modal = document.getElementById('surpriseModal');
+        const overlay = document.getElementById('overlay');
+        const mediaContainer = document.getElementById('mediaContainer');
+
+        // Estado
+        let playing = false;
+        let lastSurpriseIndex = -1;
+
+        // Arrays de conteúdo
+        const missYouMessages = [
+            "Cada segundo longe de ti parece uma eternidade... ❤️",
+            "Tu és o sonho mais bonito que se tornou realidade na minha vida",
+            "Meu coração sorri quando penso em ti",
+            "És a melhor parte de todos os meus dias",
+            "Não existe distância que diminua o amor que sinto por ti"
+        ];
+
+        const surprises = [
+            {
+                type: 'audio',
+                title: 'Uma mensagem especial para ti...',
+                src: 'audios/audio1.mp3'
+            },
+            {
+                type: 'audio',
+                title: 'Te contando um segredo...',
+                src: 'audios/audio2.mp3'
+            },
+            {
+                type: 'audio',
+                title: 'Mais um recadinho para ti...',
+                src: 'audios/audio3.mp3'
+            },
+            {
+                type: 'video',
+                title: 'Um momento nosso...',
+                src: 'videos/gula1.mp4'
+            },
+            {
+                type: 'video',
+                title: 'Lembranças especiais...',
+                src: 'videos/gula2.mp4'
+            },
+            {
+                type: 'video',
+                title: 'Momentos que guardo no coração...',
+                src: 'videos/gula3.mp4'
+            },
+            {
+                type: 'video',
+                title: 'Mais memórias nossas...',
+                src: 'videos/gula4.mp4'
+            },
+            {
+                type: 'video',
+                title: 'Nossos momentos especiais...',
+                src: 'videos/gula5.mp4'
+            }
+        ];
+
+        // Funções
+        
+        function toggleMusic() {
+    const contentWindow = music.contentWindow;
+    if (playing) {
+        music.src = music.src; // Isso reinicia o iframe, pausando a música
+        playing = false;
+        musicBtn.textContent = '🎵 Música';
+    } else {
+        music.src = music.src; // Isso reinicia o iframe, começando a música
+        playing = true;
+        musicBtn.textContent = '🎵 Música ♪';
+    }
+}
+
+        function showMessage() {
+            const message = missYouMessages[Math.floor(Math.random() * missYouMessages.length)];
+            const originalText = missYouBtn.textContent;
+            missYouBtn.textContent = message;
+            
+            setTimeout(() => {
+                missYouBtn.textContent = originalText;
+            }, 3000);
+        }
+
+        function showSurprise() {
+            let randomIndex;
+            // Garante que não repita o mesmo conteúdo duas vezes seguidas
+            do {
+                randomIndex = Math.floor(Math.random() * surprises.length);
+            } while (randomIndex === lastSurpriseIndex);
+            
+            lastSurpriseIndex = randomIndex;
+            const surprise = surprises[randomIndex];
+            
+            mediaContainer.innerHTML = '';
+
+            if (surprise.type === 'audio') {
+                mediaContainer.innerHTML = `
+                    <div class="audio-player">
+                        <p class="audio-title">${surprise.title}</p>
+                        <audio controls autoplay>
+                            <source src="${surprise.src}" type="audio/mp3">
+                            Seu navegador não suporta o elemento de áudio.
+                        </audio>
+                    </div>
+                `;
+            } else {
+                mediaContainer.innerHTML = `
+                    <div class="video-container">
+                        <p class="audio-title">${surprise.title}</p>
+                        <video class="video-surprise" controls autoplay>
+                            <source src="${surprise.src}" type="video/mp4">
+                            Seu navegador não suporta o elemento de vídeo.
+                        </video>
+                    </div>
+                `;
+            }
+
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+
+        function closeSurprise() {
+            const audios = document.querySelectorAll('audio');
+            const videos = document.querySelectorAll('video');
+            
+            audios.forEach(audio => audio.pause());
+            videos.forEach(video => video.pause());
+            
+            modal.style.display = 'none';
+            overlay.style.display = 'none';
+            
+            // Limpa o conteúdo do container ao fechar
+            mediaContainer.innerHTML = '';
+        }
+
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(petal);
+            
+            setTimeout(() => petal.remove(), 5000);
+        }
+
+        function updateDaysCounter() {
+    const startDate = new Date('2025-01-19');
+    const today = new Date('2025-02-17');
+    const diffTime = Math.abs(today - startDate);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    document.getElementById('days-counter').textContent = diffDays;
+}
+
+// Atualiza o contador assim que a página carrega
+updateDaysCounter();
+
+// Atualiza o contador a cada 24 horas (em milissegundos)
+setInterval(updateDaysCounter, 24 * 60 * 60 * 1000);
+
+// Para garantir que atualiza à meia-noite
+setInterval(() => {
+    const now = new Date();
+    if (now.getHours() === 0 && now.getMinutes() === 0) {
+        updateDaysCounter();
+    }
+}, 60000); // Verifica a cada minuto
+
+//aniversario
+
+function checkMonthAnniversary() {
+    const today = new Date();
+    
+    // Verifica se é dia 19
+    if (today.getDate() === 19) {
+        const monthsPassados = today.getMonth() - 0 + 1; // Janeiro é 0
+        
+        // Cria o modal de aniversário
+        const modal = document.createElement('div');
+        modal.innerHTML = `
+            <div class="modal-overlay" id="anniversaryOverlay" style="display: block;">
+                <div class="surprise-modal" style="display: block;">
+                    <button class="surprise-close" onclick="closeAnniversaryModal()">×</button>
+                    <h3 class="surprise-title">💑 Feliz ${monthsPassados} ${monthsPassados === 1 ? 'Mês' : 'Meses'} de Namoro! 💑</h3>
+                    <div class="media-container">
+                        <p style="color: white; margin: 20px 0;">
+                            Hoje faz ${monthsPassados} ${monthsPassados === 1 ? 'mês' : 'meses'} que compartilhamos momentos 
+                            incríveis juntos. Cada dia ao teu lado é uma bênção, e mal posso 
+                            esperar para viver muitos outros momentos especiais contigo. 
+                            Te amo muito! ❤️
+                        </p>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+}
+
+function closeAnniversaryModal() {
+    const modal = document.getElementById('anniversaryOverlay');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// Verifica todo dia à meia-noite
+setInterval(() => {
+    const now = new Date();
+    if (now.getHours() === 0 && now.getMinutes() === 0) {
+        checkMonthAnniversary();
+    }
+}, 60000);
+
+// Verifica quando a página carrega
+document.addEventListener('DOMContentLoaded', checkMonthAnniversary);
+
+       // Event Listeners
+document.addEventListener('DOMContentLoaded', () => {
+    const surpriseBtn = document.getElementById('surpriseBtn');
+    const overlay = document.getElementById('overlay');
+    const closeBtn = document.querySelector('.surprise-close');
+    const missYouBtn = document.getElementById('missYouBtn');
+
+    surpriseBtn.addEventListener('click', () => {
+        showSurprise();
+    });
+
+    missYouBtn.addEventListener('click', () => {
+        showMessage();
+    });
+
+    overlay.addEventListener('click', () => {
+        closeSurprise();
+    });
+
+    closeBtn.addEventListener('click', () => {
+        closeSurprise();
+    });
+
+    updateDaysCounter();
+    setInterval(createPetal, 300);
+    checkMonthAnniversary();
+});
+
+// Função independente para criar pétalas
+function createPetal() {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.style.left = Math.random() * window.innerWidth + 'px';
+        petal.style.animationDuration = Math.random() * 3 + 2 + 's';
+        petal.style.zIndex = '1';  // Garante que as pétalas fiquem visíveis
+        document.body.appendChild(petal);
+        
+        // Remove a pétala após a animação
+        setTimeout(() => petal.remove(), 5000);
+    }
+
+   // Função para criar pétalas individuais
+function createPetal() {
+    const petal = document.createElement('div');
+    petal.className = 'petal';
+    petal.style.left = Math.random() * window.innerWidth + 'px';
+    document.body.appendChild(petal);
+
+    // Remove a pétala depois que a animação terminar
+    petal.addEventListener('animationend', () => {
+        petal.remove();
+    });
+}
+
+// Função para iniciar a animação das pétalas
+function createPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(petal);
+            
+            setTimeout(() => petal.remove(), 5000);
+        }
+
+// Inicialização quando o documento carrega
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicia a animação das pétalas
+    const petalInterval = startPetalAnimation();
+        // Configura os event listeners
+        const surpriseBtn = document.getElementById('surpriseBtn');
+        const overlay = document.getElementById('overlay');
+        const closeBtn = document.querySelector('.surprise-close');
+
+        if(surpriseBtn) {
+            surpriseBtn.addEventListener('click', showSurprise);
+        }
+
+        if(overlay) {
+            overlay.addEventListener('click', closeSurprise);
+        }
+
+        if(closeBtn) {
+            closeBtn.addEventListener('click', closeSurprise);
+        }
+
+        // Outras inicializações
+        updateDaysCounter();
+        checkMonthAnniversary();
+    });
+    </script>
+
+    
+</body>
+</html>
